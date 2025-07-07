@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação de Passageiros(as) do Titanic</title>
+    <link rel='stylesheet' href='styles.css'>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚢 Classificação de Passageiros(as) do Titanic</h1>
+            <p>Insira os detalhes do(a) passageiro(a) para análise de predição de sobrevivência</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="titanicForm">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="name">Nome do(a) Passageiro(a)</label>
+                        <input type="text" id="name" name="name" placeholder="Digite o nome completo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticket_class">Classe do(a) Passageiro(a)</label>
+                        <select id="ticket_class" name="ticket_class" required>
+                            <option value="">Selecione a Classe do Ticket de Embarque</option>
+                            <option value="1">Primeira Classe</option>
+                            <option value="2">Segunda Classe</option>
+                            <option value="3">Terceira Classe</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="sex" value="male" required>
+                                <label for="male">Masculino</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="sex" value="female" required>
+                                <label for="female">Feminino</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Idade</label>
+                        <input type="number" id="age" name="age" placeholder="Digite a idade" min="0" max="100" step="0.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="number_siblings_spouses">Irmãos/Cônjuges a Bordo</label>
+                        <input type="number" id="number_siblings_spouses" name="number_siblings_spouses" placeholder="Número de irmãos/cônjuges" min="0" max="10" value="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="number_parents_children">Pais/Filhos a Bordo</label>
+                        <input type="number" id="number_parents_children" name="number_parents_children" placeholder="Número de pais/filhos" min="0" max="10" value="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fare">Tarifa</label>
+                        <input type="number" id="fare" name="fare" placeholder="Preço da passagem" min="0" step="0.01">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ticket">Ticket</label>
+                        <input type="number" id="ticket" name="ticket" placeholder="Ticket da passagem">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Cabine</label>
+                        <input type="text" id="cabin" name="cabin" placeholder="Digite a cabine">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="embarked">Porto de Embarque</label>
+                        <select id="embarked" name="embarked">
+                            <option value="">Selecione o Porto</option>
+                            <option value="Cherbourg">Cherbourg</option>
+                            <option value="Queenstown">Queenstown</option>
+                            <option value="Southampton">Southampton</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Analisar Dados do Passageiro</button>
+            </form>
+            
+            <div id="result" class="result">
+                <h3>Resultados da Análise do Passageiro</h3>
+                <div id="resultContent" class="result-grid"></div>
+            </div>
+            
+            <div id="passengersList" class="passengers-list">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>Lista de Passageiros Analisados</h3>
+                </div>
+                <div id="passengersContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src='script.js'></script>
+</body>
+</html>
