@@ -7,8 +7,8 @@ async function sendToApi(passengerData) {
             ticket_class: parseInt(passengerData.ticket_class),
             sex: passengerData.sex,
             age: passengerData.age ? parseFloat(passengerData.age) : null,
-            number_siblings_spouses: parseInt(passengerData.sibsp || 0),
-            number_parents_children: parseInt(passengerData.parch || 0),
+            number_siblings_spouses: parseInt(passengerData.number_siblings_spouses || 0),
+            number_parents_children: parseInt(passengerData.number_parents_children || 0),
             ticket: passengerData.ticket,
             fare: passengerData.fare ? parseFloat(passengerData.fare) : null,
             cabin: passengerData.cabin || null, 
@@ -58,8 +58,8 @@ async function loadFromApi() {
                 pclass: passenger.ticket_class?.toString(),
                 sex: passenger.sex,
                 age: passenger.age?.toString(),
-                sibsp: passenger.number_siblings_spouses?.toString(),
-                parch: passenger.number_parents_children?.toString(),
+                number_siblings_spouses: passenger.number_siblings_spouses?.toString(),
+                number_parents_children: passenger.number_parents_children?.toString(),
                 fare: passenger.fare?.toString(),
                 embarked: passenger.embarked,
                 survived: passenger.survived
@@ -74,7 +74,7 @@ async function loadFromApi() {
     }
 }
 
-async function addPassengerToList(passengerData) {    
+async function addPassengerToList(passengerData) {        
     const result = await sendToApi(passengerData);
     const survived = result.survived;
     
@@ -84,7 +84,7 @@ async function addPassengerToList(passengerData) {
         '3': 'Terceira Classe'
     };
         
-    const familySize = parseInt(passengerData.sibsp || 0) + parseInt(passengerData.parch || 0) + 1;
+    const familySize = parseInt(passengerData.number_siblings_spouses || 0) + parseInt(passengerData.number_parents_children || 0) + 1;
     const isAlone = familySize === 1;
     
     const passengerCard = document.createElement('div');
@@ -128,11 +128,11 @@ async function addPassengerToList(passengerData) {
             </div>
             <div class="detail-item">
                 <strong>Irmãos/Cônjuges</strong>
-                <span>${passengerData.sibsp || 0}</span>
+                <span>${passengerData.number_siblings_spouses || 0}</span>
             </div>
             <div class="detail-item">
                 <strong>Pais/Filhos</strong>
-                <span>${passengerData.parch || 0}</span>
+                <span>${passengerData.number_parents_children || 0}</span>
             </div>
         </div>
     `;
@@ -153,7 +153,7 @@ document.getElementById('titanicForm').addEventListener('submit', function(e) {
         data[key] = value;
     }
     
-    const familySize = parseInt(data.sibsp || 0) + parseInt(data.parch || 0) + 1;
+    const familySize = parseInt(data.number_siblings_spouses || 0) + parseInt(data.number_parents_children || 0) + 1;
     const isAlone = familySize === 1;
     
     const classMap = {
